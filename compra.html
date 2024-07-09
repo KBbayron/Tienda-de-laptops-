@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <!--CSS Bootstrap-->
+    <link rel="stylesheet" href="css/bootstrap.css">
+    <!--FontAwesome-->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css">
+    <!--CSS SweetAlert-->
+    <link rel="stylesheet" href="css/sweetalert2.css">
+    <!--CSS Propio-->
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <header>
+        <div class="container">
+            <div class="row justify-content-between align-items-lg-stretch">
+                <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
+                    <a href="index.html" class="navbar-brand">
+                        BODEGUITA FLORES EIRL
+                    </a>
+                    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+                </nav>
+            </div>
+        </div>
+    </header>
+    <br>
+    <main>
+        <div class="container">
+            <div class="row mt-5">
+                <div class="col">
+                    <h2 class="d-flex justify-content-center mb-3">
+                        Realizar Compra
+                    </h2>
+                    <form action="#" id="procesar-pago" method="post">
+                        <div class="row">
+                            <label for="cliente" class="col-12 col-md-2 col-form-label h2">
+                                Cliente:
+                            </label>
+                            <div class="col-12 col-md-10">
+                                <input type="text" class="form-control" id="cliente" placeholder="Ingresa nombre cliente" required name="destinatario">
+                            </div>
+                        </div>
+                        <div class="row mt-3">
+                            <label for="email" class="col-12 col-md-2 col-form-label h2">
+                                Correo:
+                            </label>
+                            <div class="col-12 col-md-10">
+                                <input type="email" class="form-control" id="correo" placeholder="Ingresa tu correo" required name="cc_to">
+                            </div>
+                        </div>
+                        <div class="table-responsive mt-5" id="carrito">
+                            <table class="table table-dark" id="lista-compra">
+                                <thead>
+                                    <tr>
+                                        <th scope="col">Imagen</th>
+                                        <th scope="col">Nombre</th>
+                                        <th scope="col">Precio</th>
+                                        <th scope="col">Cantidad</th>
+                                        <th scope="col">Subtotal</th>
+                                        <th scope="col">Eliminar</th>
+                                    </tr>
+                                </thead>
+                                <tbody></tbody>
+                                <tr>
+                                    <th colspan="4" scope="col" class="text-end">
+                                        Subtotal:
+                                    </th>
+                                    <th scope="col">
+                                        <p id="subtotal"></p>
+                                    </th>
+                                </tr>
+                                <tr>
+                                    <th colspan="4" scope="col" class="text-end">
+                                        IVA:
+                                    </th>
+                                    <th scope="col">
+                                        <p id="iva"></p>
+                                    </th>
+                                </tr>
+                                <tr>
+                                    <th colspan="4" scope="col" class="text-end">
+                                        Total:
+                                    </th>
+                                    <th scope="col">
+                                        <input type="text" id="total" name="total" readonly class="border-0 fw-bold bg-dark text-white">
+                                    </th>
+                                </tr>
+                            </table>
+                        </div>
+                        <div class="row justify-content-center" id="loaders">
+                            <img src="img/cargando.gif" alt="" id="cargando" width="50px">
+                        </div>
+                        <div class="row justify-content-between">
+                            <div class="col-md-4 mb-2">
+                                <a href="index.html" class="btn btn-info d-grid">
+                                    Seguir Comprando
+                                </a>
+                            </div>
+                            <div class="col-12 col-md-4">
+                                <a href="#" class="btn btn-success d-grid" id="procesar-compra">
+                                    Realizar Compra
+                                </a>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </main>
+    <script type="text/javascript"
+    src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
+    <!--Jquery-->
+    <script src="https://code.jquery.com/jquery-3.4.1.js" integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU=" crossorigin="anonymous"></script>
+    <!--JS Bootstrap-->
+    <script src="js/bootstrap.bundle.js"></script>
+    <!--JS SweetAlert2-->
+    <script src="js/sweetalert2.js"></script>
+    <!--Java script propio-->
+    
+</body>
+</html>
