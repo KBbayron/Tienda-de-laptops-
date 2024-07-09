@@ -58,7 +58,8 @@ class Carrito {
         while (listaProductos.firstChild) {
             listaProductos.removeChild(listaProductos.firstChild);
         }
-        localStorage.clear();
+        //misma funcion en menos codigo
+        //localStorage.clear();
         return false;
     }
 
@@ -81,12 +82,13 @@ class Carrito {
     eliminarProductoLocalStorage(productoID) {
         let productosLS;
         productosLS = this.obtenerProductosLocalStorage();
-        productosLS.forEach((producto, index) => {
+
+        productosLS.forEach(function (producto, index) {
             if (producto.id === productoID) {
+                //eliminar elementos dentro de un arreglo
                 productosLS.splice(index, 1);
             }
         });
         localStorage.setItem('productos', JSON.stringify(productosLS));
-        return;
     }
 }
