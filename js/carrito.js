@@ -21,7 +21,25 @@ class Carrito {
             id: producto.querySelector('a').getAttribute('data-id'),
             cantidad: 1
         }
-        this.insertarCarrito(infoProducto);
+        let productosLS;
+        productosLS = this.obtenerProductosLocalStorage();
+        productosLS.forEach(function (productoLS) {
+            if (productoLS.id === infoProducto.id) {
+                productosLS = productoLS.id;
+            }
+        });
+        if (productosLS === infoProducto.id) {
+            Swal.fire({
+                icon: 'error',
+                type: 'info',
+                title: 'Oops...',
+                text: 'Desea añadirlo de nuevo?',
+                timer: 2000,
+                showConfirmButton: false
+            })
+        } else {
+            this.insertarCarrito(infoProducto);
+        }
     }
 
     //se envia informacion al carrito
