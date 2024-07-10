@@ -55,11 +55,12 @@ class Carrito {
 
     vaciarCarrito(e) {
         e.preventDefault();
+        //elimina etiquetas del carrito
         while (listaProductos.firstChild) {
             listaProductos.removeChild(listaProductos.firstChild);
         }
-        //misma funcion en menos codigo
-        //localStorage.clear();
+        //elimina local storage tambien
+        localStorage.clear();
         return false;
     }
 
@@ -90,5 +91,22 @@ class Carrito {
             }
         });
         localStorage.setItem('productos', JSON.stringify(productosLS));
+    }
+    leerlocalStorage() {
+        let productosLS;
+        productosLS = this.obtenerProductosLocalStorage();
+        productosLS.forEach(function (producto) {
+            const row = document.createElement('tr');
+            row.innerHTML = `
+                <td>
+                    <img src= "${producto.imagen}" width="100px">
+                </td>
+                <td>${producto.titulo}</td>
+                <td>${producto.precio}</td>
+                <td><a href="#" class= "borrar-producto fas fa-times-circle text-decoration-none" 
+                data-id="${producto.id}"></a></td>
+            `;
+            listaProductos.appendChild(row);
+        });
     }
 }
