@@ -4,6 +4,7 @@ const carrito = document.getElementById('carrito');
 const productos = document.getElementById('lista-productos');
 const listaProductos = document.querySelector('#lista-carrito tbody');
 const vaciarCarritoBtn = document.getElementById('vaciar-carrito');
+const procesarpedidoBtn = document.getElementById('procesar-pedido')
 cargarEventos();
 //funcion de autoejecucion
 //guarda la info de quien hace el evento
@@ -14,6 +15,7 @@ function cargarEventos() {
     carrito.addEventListener('click', (e) => { carro.eliminarProducto(e) });
     vaciarCarritoBtn.addEventListener('click', (e) => { carro.vaciarCarrito(e) });
     document.addEventListener('DOMContentLoaded', carro.leerlocalStorage());
+    procesarpedidoBtn.addEventListener('click', (e) => { carro.procesarPedido(e) });
 }
 
 

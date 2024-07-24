@@ -110,6 +110,7 @@ class Carrito {
         });
         localStorage.setItem('productos', JSON.stringify(productosLS));
     }
+
     leerlocalStorage() {
         let productosLS;
         productosLS = this.obtenerProductosLocalStorage();
@@ -126,5 +127,62 @@ class Carrito {
             `;
             listaProductos.appendChild(row);
         });
+    }
+
+    leerLocalStorageCompra() {
+        let productosLS;
+        productosLS = this.obtenerProductosLocalStorage();
+        productosLS.forEach(function (producto) {
+            const row = document.createElement('tr');
+            row.innerHTML = `
+                <td>
+                    <img src= "${producto.imagen}" width="100px">
+                </td>
+                <td>${producto.titulo}</td>
+                <td>${producto.precio}</td>
+                <td>
+                    <input type="number" class="form-control cantidad" min="1" value="${producto.cantidad}">
+                </td>
+                <td id="subtotales">
+                    ${producto.precio * producto.cantidad}
+                </td>
+                <td>
+                    <a href="#" class="borrar-producto fas fa-times-circle text-decoration-none" data-id="${producto.id}" style="font-size:30px"></a>
+                </td>
+            `;
+            listaCompra.appendChild(row);
+        });
+    }
+
+    procesarPedido(e) {
+        e.preventDefault()
+        if (this.obtenerProductosLocalStorage().length === 0) {
+            Swal.fire({
+                icon: 'error',
+                type: 'info',
+                title: 'Oops...',
+                text: 'Desea añadirlo de nuevo?',
+                timer: 2000,
+                showConfirmButton: false
+            })
+
+        } else {
+            location.href = "compra.html";
+        }
+    }
+
+    calcularTotal() {
+        let productoLS;
+        let total = 0, subtotal = 0, iva = 0;
+        productoLS = this.obtenerProductosLocalStorage();
+        for (let i = 0; i < productoLS; i++) {
+            let element = Number(productoLS[i].precio * productoLS[i].cantidad);
+            total = total + element;
+        }
+        iva = parseFloat(total * 0.13).toFixed(2);
+        subtotal = parseFloat(total - iva).toFixed(2);
+        document.getElementById('subtotal').innerHTML = "$" + subtotal;
+        document.getElementById('iva').innerHTML = "$" + iva;
+        document.getElementById('total').value = "$" + total.toFixed(2);
     }
 }
