@@ -175,7 +175,7 @@ class Carrito {
         let productoLS;
         let total = 0, subtotal = 0, iva = 0;
         productoLS = this.obtenerProductosLocalStorage();
-        for (let i = 0; i < productoLS; i++) {
+        for (let i = 0; i < productoLS.length; i++) {
             let element = Number(productoLS[i].precio * productoLS[i].cantidad);
             total = total + element;
         }
