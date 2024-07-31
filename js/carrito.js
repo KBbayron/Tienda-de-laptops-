@@ -99,6 +99,7 @@ class Carrito {
         }
         return productosLS;
     }
+    
     eliminarProductoLocalStorage(productoID) {
         let productosLS;
         productosLS = this.obtenerProductosLocalStorage();
