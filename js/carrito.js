@@ -68,6 +68,7 @@ class Carrito {
             producto = e.target.parentElement.parentElement
             productoID = producto.querySelector('a').getAttribute('data-id');
             this.eliminarProductoLocalStorage(productoID);
+            this.calcularTotal();
         }
     }
 
@@ -184,5 +185,25 @@ class Carrito {
         document.getElementById('subtotal').innerHTML = "$" + subtotal;
         document.getElementById('iva').innerHTML = "$" + iva;
         document.getElementById('total').value = "$" + total.toFixed(2);
+    }
+
+    obtenerEvento(e){
+        e.preventDefault();
+        let id,cantidad,producto, productosLS;
+        if(e.target.classList.contains('cantidad')){
+            producto = e.target.parentElement.parentElement;
+            id = producto.querySelector('a').getAttribute('data-id');//busca entre todas las etiqueta 'a' que contenga el data-id
+            cantidad = producto.querySelector('input').value;
+            let actualizarMontos=document.querySelectorAll('#subtotales');//selecciona todas las etiquetas que tenga subtotales
+            productosLS = this.obtenerProductosLocalStorage();
+            productosLS.forEach(function (productoLS, index) {
+                if(productoLS.id === id){
+                    productoLS.cantidad = cantidad;
+                    actualizarMontos[index].innerHTML = Number(cantidad * productosLS[index].precio);
+                }
+            });
+            localStorage.setItem('productos', JSON.stringify(productosLS));
+            this.calcularTotal();            
+        }
     }
 }
